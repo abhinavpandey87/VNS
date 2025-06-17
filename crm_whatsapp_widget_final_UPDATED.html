@@ -107,7 +107,7 @@
   function startChat(phone, name) {
     const message = `Hi ${name}, how can we assist you today?`;
 
-    fetch("https://api.vnsai.com/api/send-message", {
+    fetch("http://pixel.lbuy.in/cnvr/SendMessageServlet", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
