@@ -71,7 +71,7 @@
       padding-top: 20px;
       font-size: 2.5rem;
       font-weight: bold;
-      background: url('https://upload.wikimedia.org/wikipedia/commons/6/66/Green_Light.jpg');
+      <!background: url('https://upload.wikimedia.org/wikipedia/commons/6/66/Green_Light.jpg')>;
       background-size: cover;
       background-clip: text;
       -webkit-background-clip: text;
@@ -119,10 +119,17 @@ function startChat(phone, name) {
         "Content-Type": "application/json"
       },
       body: JSON.stringify({
-        phone: phone,
-        name: name,
-        message: message,
-        wabaNumber: "918448250202"
+        body: JSON.stringify({
+        userid:AdvanceSalary,
+        password:c3NTUcZb,
+        msg:Hi Shashi, ↵Your loan request has been received.↵Track your application anytime using your registered mobile number:↵🔗 https://advancesalary.in/check↵— Team Advance Salary,
+        wabaNumber:"918448250202"
+        duplicatecheck:true,
+        output:json,
+        mobile:"918288033908"
+        sendMethod:quick,
+        msgType:text,
+        templateName:loan_application_tracking,
       })
     })
     .then(res => {
