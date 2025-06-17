@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>CRM AGENT</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: url('https://raw.githubusercontent.com/abhinavpandey87/VNS/main/image_12.PNG') no-repeat center center fixed;
+      background-size: cover;
+      color: white;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .sparkle {
+      position: absolute;
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      animation: float 12s infinite ease-in-out;
+      opacity: 0.85;
+    }
+
+    @keyframes float {
+      0% { transform: translateY(100vh) translateX(0); opacity: 0; }
+      50% { opacity: 1; }
+      100% { transform: translateY(-10vh) translateX(20vw); opacity: 0; }
+    }
+
+    table {
+      border-collapse: collapse;
+      width: 90%;
+      margin: 60px auto;
+      background-color: rgba(0, 0, 0, 0.5);
+      border-radius: 10px;
+      overflow: hidden;
+    }
+
+    th, td {
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      padding: 10px;
+      text-align: center;
+      color: white;
+    }
+
+    th {
+      background-color: rgba(210, 180, 140, 0.8);
+      color: black;
+    }
+
+    .chat-btn {
+      background-color: #25D366;
+      color: white;
+      padding: 6px 12px;
+      border-radius: 20px;
+      font-size: 14px;
+      text-decoration: none;
+      border: none;
+      transition: background-color 0.3s ease;
+      cursor: pointer;
+    }
+
+    .chat-btn:hover {
+      background-color: #075E54;
+    }
+
+    h2 {
+      text-align: center;
+      padding-top: 20px;
+      font-size: 2.5rem;
+      font-weight: bold;
+      background: url('https://upload.wikimedia.org/wikipedia/commons/6/66/Green_Light.jpg');
+      background-size: cover;
+      background-clip: text;
+      -webkit-background-clip: text;
+      color: transparent;
+      -webkit-text-fill-color: transparent;
+    }
+  </style>
+</head>
+<body>
+
+<h2>CRM Portal - AGENT</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>Lead ID</th>
+      <th>Name</th>
+      <th>Mobile</th>
+      <th>Chat</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr><td>30330</td><td>ANUJ</td><td>8118825908</td><td><button class="chat-btn" onclick="startChat('8118825908', 'ANUJ')">Chat</button></td></tr>
+    <tr><td>30331</td><td>ABHINAV</td><td>8288033908</td><td><button class="chat-btn" onclick="startChat('8288033908', 'ABHINAV')">Chat</button></td></tr>
+    <tr><td>30332</td><td>PUNAM</td><td>8219027470</td><td><button class="chat-btn" onclick="startChat('8219027470', 'PUNAM')">Chat</button></td></tr>
+    <tr><td>30333</td><td>SAKSHI</td><td>8950746450</td><td><button class="chat-btn" onclick="startChat('8950746450', 'SAKSHI')">Chat</button></td></tr>
+    <tr><td>30334</td><td>SHWETA</td><td>9779778149</td><td><button class="chat-btn" onclick="startChat('9779778149', 'SHWETA')">Chat</button></td></tr>
+    <tr><td>30335</td><td>DEV</td><td>9478368125</td><td><button class="chat-btn" onclick="startChat('9478368125', 'DEV')">Chat</button></td></tr>
+  </tbody>
+</table>
+<!-- Make sure jQuery is included -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<script>
+
+function startChat(phone, name) {
+    const message = 'Hi Neeraj, how can we assist you today?';
+
+    fetch("https://pixel.lbuy.in/cnvr/SendMessageServlet", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        phone: phone,
+        name: name,
+        message: message,
+        wabaNumber: "918448250202"
+      })
+    })
+    .then(res => {
+      if (!res.ok) throw new Error("Network response was not ok");
+      return res.json();
+    })
+    .then(data => {
+      console.log("Message sent:", data);
+      alert("WhatsApp message sent to " + name);
+    })
+    .catch(error => {
+      console.error("Error:", error);
+      alert("Failed to send WhatsApp message.");
+    });
+  }
+</script>
+
+<script>
+  function startCsshat(phone, name) {
+  const message = `Hi ${name}, how can we assist you today?`;
+
+  fetch("https://api.vnsai.com/api/send-message", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      "Authorization": "Bearer YOUR_CLIENT_API_KEY" // Replace with your actual API key
+    },
+    body: JSON.stringify({
+      phone: phone, // Make sure this is in international format, e.g., '917355745909'
+      name: name,
+      message: message,
+      wabaNumber: "918448250202" // Replace with your actual WhatsApp Business Account number
+    })
+  })
+  .then(res => {
+    if (!res.ok) {
+      throw new Error("Network response was not ok " + res.statusText);
+    }
+    return res.json();
+  })
+  .then(data => {
+    console.log("Message sent:", data);
+    alert("WhatsApp message sent to " + name);
+  })
+  .catch(error => {
+    console.error("Error:", error);
+    alert("Failed to send WhatsApp message.");
+  });
+}
+
+  const colors = ['#ff00ff', '#00bfff', '#00ff00', '#ffff00'];
+
+  for (let i = 0; i < 80; i++) {
+    const sparkle = document.createElement('div');
+    sparkle.classList.add('sparkle');
+    sparkle.style.left = Math.random() * 100 + 'vw';
+    sparkle.style.top = Math.random() * 100 + 'vh';
+    sparkle.style.animationDelay = Math.random() * 5 + 's';
+    const color = colors[Math.floor(Math.random() * colors.length)];
+    sparkle.style.background = color;
+    sparkle.style.boxShadow = `0 0 12px ${color}, 0 0 24px ${color}`;
+    document.body.appendChild(sparkle);
+  }
+</script>
+
+</body>
+</html>
