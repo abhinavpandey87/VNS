@@ -106,47 +106,6 @@
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
 
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-
-<script>
-
-function startChat(phone, name) {
-    const message = 'Hi Neeraj, how can we assist you today?';
-
-    fetch("https://pixel.lbuy.in/cnvr/SendMessageServlet", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify({
-        body: JSON.stringify({
-        userid:AdvanceSalary,
-        password:c3NTUcZb,
-        msg:Hi Shashi, ↵Your loan request has been received.↵Track your application anytime using your registered mobile number:↵🔗 https://advancesalary.in/check↵— Team Advance Salary,
-        wabaNumber:"918448250202"
-        duplicatecheck:true,
-        output:json,
-        mobile:"918288033908"
-        sendMethod:quick,
-        msgType:text,
-        templateName:loan_application_tracking,
-      })
-    })
-    .then(res => {
-      if (!res.ok) throw new Error("Network response was not ok");
-      return res.json();
-    })
-    .then(data => {
-      console.log("Message sent:", data);
-      alert("WhatsApp message sent to " + name);
-    })
-    .catch(error => {
-      console.error("Error:", error);
-      alert("Failed to send WhatsApp message.");
-    });
-  }
-</script>
-
 <script>
   function startChat123(phone, name) {
   const message = `Hi ${name}, how can we assist you today?`;
