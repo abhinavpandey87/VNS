@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>CRM AGENT - SEND ONLY (Final)</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: url('https://raw.githubusercontent.com/abhinavpandey87/VNS/main/image_12.PNG') no-repeat center center fixed;
+      background-size: cover;
+      color: white;
+      overflow: hidden;
+      position: relative;
+    }
+    table {
+      border-collapse: collapse;
+      width: 90%;
+      margin: 60px auto;
+      background-color: rgba(0, 0, 0, 0.5);
+      border-radius: 10px;
+    }
+    th, td {
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      padding: 10px;
+      text-align: center;
+      color: white;
+    }
+    th {
+      background-color: rgba(210, 180, 140, 0.8);
+      color: black;
+    }
+    .chat-btn {
+      background-color: #25D366;
+      color: white;
+      padding: 6px 12px;
+      border-radius: 20px;
+      font-size: 14px;
+      text-decoration: none;
+      border: none;
+      cursor: pointer;
+    }
+    .chat-btn:hover {
+      background-color: #075E54;
+    }
+  </style>
+</head>
+<body>
+
+<h2 style="text-align:center; padding-top:20px;">CRM Portal - AGENT (Final Version)</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>Lead ID</th>
+      <th>Name</th>
+      <th>Mobile</th>
+      <th>Chat</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>30330</td>
+      <td>ANUJ</td>
+      <td>918118825908</td>
+      <td><button class="chat-btn" onclick="startChat('918118825908', 'ANUJ')">Chat</button></td>
+    </tr>
+    <tr>
+      <td>30331</td>
+      <td>ABHINAV</td>
+      <td>918288033908</td>
+      <td><button class="chat-btn" onclick="startChat('918288033908', 'ABHINAV')">Chat</button></td>
+    </tr>
+    <tr>
+      <td>30332</td>
+      <td>PUNAM</td>
+      <td>918219027470</td>
+      <td><button class="chat-btn" onclick="startChat('918219027470', 'PUNAM')">Chat</button></td>
+    </tr>
+    <tr>
+      <td>30333</td>
+      <td>SAKSHI</td>
+      <td>918950746450</td>
+      <td><button class="chat-btn" onclick="startChat('918950746450', 'SAKSHI')">Chat</button></td>
+    </tr>
+  </tbody>
+</table>
+
+<script>
+function startChat(mobile, name) {
+  const url = "https://api.vnsai.com/WAApi/template";
+
+  const formData = new FormData();
+  formData.append("userid", "AdvanceSalary");
+  formData.append("password", "c3NTUcZb"); // your password
+  formData.append("wabaNumber", "918448250202");
+  formData.append("output", "json");
+  formData.append("msgType", "text");
+  formData.append("templateName", "loan_application_tracking");
+  formData.append("duplicatecheck", true);
+  formData.append("sendMethod", "quick");
+
+  formData.append("mobile", mobile); // your API expects "mobile"
+
+  formData.append("msg", `Hi ${name}, 
+Your loan request has been received.
+Track your application anytime using your registered mobile number:
+🔗 https://advancesalary.in/check
+— Team Advance Salary`);
+
+  fetch(url, {
+    method: "POST",
+    body: formData
+  })
+  .then(res => res.json())
+  .then(data => {
+    console.log("Message sent:", data);
+    alert("WhatsApp message sent to " + name);
+  })
+  .catch(error => {
+    console.error("Error:", error);
+    alert("Failed to send WhatsApp message.");
+  });
+}
+</script>
+
+</body>
+</html>
