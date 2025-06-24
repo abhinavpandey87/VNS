@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>CRM AGENT - SEND ONLY (Backend WA API)</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: url('https://raw.githubusercontent.com/abhinavpandey87/VNS/main/image_12.PNG') no-repeat center center fixed;
+      background-size: cover;
+      color: white;
+      overflow: hidden;
+      position: relative;
+    }
+    table {
+      border-collapse: collapse;
+      width: 90%;
+      margin: 60px auto;
+      background-color: rgba(0, 0, 0, 0.5);
+      border-radius: 10px;
+    }
+    th, td {
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      padding: 10px;
+      text-align: center;
+      color: white;
+    }
+    th {
+      background-color: rgba(210, 180, 140, 0.8);
+      color: black;
+    }
+    .chat-btn {
+      background-color: #25D366;
+      color: white;
+      padding: 6px 12px;
+      border-radius: 20px;
+      font-size: 14px;
+      text-decoration: none;
+      border: none;
+      cursor: pointer;
+    }
+    .chat-btn:hover {
+      background-color: #075E54;
+    }
+  </style>
+</head>
+<body>
+
+<h2 style="text-align:center; padding-top:20px;">CRM Portal - AGENT (Backend WA API)</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>Lead ID</th>
+      <th>Name</th>
+      <th>Mobile</th>
+      <th>Chat</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>30330</td>
+      <td>AN</td>
+      <td>918118888888</td>
+      <td><button class="chat-btn" onclick="startChat('918118825908', 'ShaSHI')">Chat</button></td>
+    </tr>
+    <tr>
+      <td>30331</td>
+      <td>AB</td>
+      <td>918222222222</td>
+      <td><button class="chat-btn" onclick="startChat('918288033908', 'ADVANCE_SHASHI')">Chat</button></td>
+    </tr>
+    <tr>
+      <td>30332</td>
+      <td>PU</td>
+      <td>918210000000</td>
+      <td><button class="chat-btn" onclick="startChat('918219027470', 'SHASHI')">Chat</button></td>
+    </tr>
+    <tr>
+      <td>30333</td>
+      <td>SA</td>
+      <td>918786543211</td>
+      <td><button class="chat-btn" onclick="startChat('918950746450', 'shashi')">Chat</button></td>
+    </tr>
+  </tbody>
+</table>
+
+<script>
+function startChat(mobile, name) {
+  const url = "https://backend-wa.virtuosonetsoft.com/sendMsg/template";
+
+  const username = "XXXXXXX";  // 🔥 PUT your username here
+  const password = "XXXXXX";  // 🔥 PUT your password here
+
+  // Prepare bodyVariables — 3 variables required by your template
+  const var1 = name;
+  const var2 = "12343567";   // You can make this dynamic if needed
+  const var3 = "23";         // You can make this dynamic if needed
+
+  const body = new URLSearchParams();
+  body.append("mobile", mobile);
+  body.append("templateName", "loan_application_tracking");
+  body.append("bodyVariables", `${var1},${var2},${var3}`);
+  body.append("campaignName", "TEST123");
+
+  fetch(url, {
+    method: "POST",
+    headers: {
+      "Authorization": "Basic " + btoa(username + ":" + password),
+      "Content-Type": "application/x-www-form-urlencoded"
+    },
+    body: body
+  })
+  .then(res => res.json())
+  .then(data => {
+    console.log("Message sent:", data);
+    alert("WhatsApp message sent to " + name);
+  })
+  .catch(error => {
+    console.error("Error:", error);
+    alert("Failed to send WhatsApp message.");
+  });
+}
+</script>
+
+</body>
+</html>
